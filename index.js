@@ -35,7 +35,7 @@ app.get('/messenger/webhook',(req, res)=>{
       console.log('Validation Succeded.')
       res.status(200).send(req.query['hub.challenge']);
     } else {
-      res.send('failed'+req.query['hub.mode']+' '+req.query['hub.verify_token'] +' === '+ fb.verifyToken
+      res.send('failed'+req.query['hub.mode']+' '+req.query['hub.verify_token'] +' === '+ fb.verifyToken)
       console.error('Failed validation. Make sure the validation tokens match.');
       res.sendStatus(403)
     }
