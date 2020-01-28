@@ -99,7 +99,7 @@ bot.on('delivery',(payload)=>{
     console.log('hit delivery')
     console.log(payload)
 })
-http.listen(3000)
+http.listen(process.env.PORT || 3000)
 
 
 
