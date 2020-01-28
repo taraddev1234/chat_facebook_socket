@@ -8,13 +8,16 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const http = require('http').Server(app)
-const io = require('socket.io')(http)
+// const io = require('socket.io')(http)
 const bodyParser = require('body-parser')
 const bootBot = require('./lib/BootBot')
 const bot = new bootBot(fb)
-io.set('origins', '*')
+// io.set('origins', '*')
 // io.origins(['https://dev-backoffice.tarad.com', 'https://new-backoffice.tarad.com'])
-io.on('connection',function(socket){
+// http.listen(process.env.PORT || 3000)
+var server = app.listen(process.env.PORT || 3000);
+var io = require('socket.io').listen(server);
+io.sockets.on('connection',function(socket){
     socket.on('initpage',function(pageid){
       console.log('page admin initialize'+pageid)
       socket.join(pageid)
@@ -101,7 +104,7 @@ bot.on('delivery',(payload)=>{
     console.log('hit delivery')
     console.log(payload)
 })
-http.listen(process.env.PORT || 3000)
+
 
 
 
